@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ball : MonoBehaviour {
-    public float launchSpeed;
+public class Ball : MonoBehaviour {
+    public Vector3 launchVelocity;
 	private AudioSource audioSource;
     private Rigidbody rigidBody;
 	// Use this for initialization
@@ -16,7 +16,7 @@ public class ball : MonoBehaviour {
 
 	void Launch ()
 	{
-		rigidBody.velocity = new Vector3 (0, 0, launchSpeed);
+		rigidBody.velocity = launchVelocity;
 		audioSource.Play ();
 	}
 	
