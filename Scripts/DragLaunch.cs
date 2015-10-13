@@ -49,7 +49,7 @@ public class DragLaunch : MonoBehaviour {
 		Debug.Log ("Moved "+ dragDistance.x + "in x direction, and "+ dragDistance.y + "in y direction.");
 		Debug.Log ("took " + dragTime + " seconds to drag.");
 
-		Vector3 dragParameters = new Vector3(launchSpeed/10, 0f, (dragDistance.y/10/dragTime));
+		Vector3 dragParameters = new Vector3(Mathf.Clamp(launchSpeed/10,-6f,6f), 0f, Mathf.Clamp ((dragDistance.y/10/dragTime),80f,120f));
 		ball.Launch(dragParameters);
 	
 	}
