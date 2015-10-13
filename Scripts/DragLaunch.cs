@@ -19,6 +19,22 @@ public class DragLaunch : MonoBehaviour {
 		startDragTime = Time.time;
 	}
 
+	public void MoveStart (float amount){
+		switch (ball.ballIsLaunched){
+		case true:
+			Debug.Log ("unable to change position. Ball is launched already.");
+			return;
+
+		case false:
+			if(transform.position.x+amount >=-50 && transform.position.x+amount <=50){
+				ball.transform.Translate (new Vector3 (amount, 0, 0));
+			}
+
+			else{Debug.Log ("New position would be out of lane");} 
+			return;
+		}
+	}
+
 
 	public void DragEnd(){
 		fingerEndPos = Input.mousePosition;
@@ -33,7 +49,7 @@ public class DragLaunch : MonoBehaviour {
 		Debug.Log ("Moved "+ dragDistance.x + "in x direction, and "+ dragDistance.y + "in y direction.");
 		Debug.Log ("took " + dragTime + " seconds to drag.");
 
-		Vector3 dragParameters = new Vector3(fingerEndPos.x, 0f, dragTime);
+		Vector3 dragParameters = new Vector3(launchSpeed, 0f, (dragDistance.y/dragTime));
 		ball.Launch(dragParameters);
 	
 	}
